@@ -40,6 +40,11 @@ namespace WebApplication1.Controllers
 			}
 		}
 
+		public ActionResult Login()
+		{
+			return View();
+		}
+
 		public ActionResult ActiveRegister(int memberId, string confirmCode)
 		{
 			IMemberRepository repo = new MemberRepository();
