@@ -8,19 +8,13 @@ namespace WebApplication1.Models.DTOs
 {
 	public class MemberDto
 	{
+		public int Id { get; set; }
+
 		public string Account { get; set; }
 
-		public string Password { get; set; } // 密碼，明碼
+		public string Password { get; set; }
 
-		public string EncryptedPassword
-		{
-			get
-			{
-				string salt = "!@#$$DGTEGYT";
-				string result = HashUtility.ToSHA256(this.Password, salt);
-				return result;
-			}
-		} // 密碼，暗碼
+		public string EncryptedPassword { get; set; }
 
 		public string Email { get; set; }
 
@@ -28,7 +22,7 @@ namespace WebApplication1.Models.DTOs
 
 		public string Mobile { get; set; }
 
-		public string IsConfirmed { get; set; }
+		public bool IsConfirmed { get; set; }
 
 		public string ConfirmCode { get; set; }
 	}

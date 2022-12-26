@@ -10,6 +10,11 @@ namespace WebApplication1.Models.Services.Interfaces
 	public interface IMemberRepository
 	{
 		bool IsExist(string account);
+		
 		void Create(RegisterDto dto);
+
+		MemberDto Load(int memberId);
+
+		void ActiveRegister(int memberId);
 	}
 }

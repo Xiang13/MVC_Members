@@ -10,10 +10,12 @@ namespace WebApplication1.Models.Services
 	public class MemberService
 	{
 		private readonly IMemberRepository repository;
+
 		public MemberService(IMemberRepository repo)
 		{
 			this.repository = repo;
 		}
+
 		public (bool IsSuccess, string ErrorMessage) CreateNewMember(RegisterDto dto)
 		{
 			// todo 判斷各欄位是否正確
@@ -29,6 +31,16 @@ namespace WebApplication1.Models.Services
 			repository.Create(dto);
 			#endregion
 			return (true, null);
+		}
+	
+		public void ActiveRegister(int memberId, string confirmCode)
+		{
+			MemberDto dto = repository.Load(memberId);
+			if (dto == null) return;
+
+			if (string.Compare(dto.ConfirmCode, confirmCode) != 0) return;
+
+			repository.ActiveRegister(memberId);
 		}
 	}
 }

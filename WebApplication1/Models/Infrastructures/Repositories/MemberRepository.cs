@@ -34,5 +34,31 @@ namespace WebApplication1.Models.Infrastructures.Repositories
 			var entity = db.Members.SingleOrDefault(x => x.Account == account);
 			return (entity != null);
 		}
+
+		public MemberDto Load(int memberId)
+		{
+			Member entity = db.Members.SingleOrDefault(x => x.Id == memberId);
+			if (entity == null) return null;
+			MemberDto result = new MemberDto
+			{
+				Id = entity.Id,
+				Account = entity.Account,
+				EncryptedPassword = entity.EncryptedPassword,
+				Email = entity.Email,
+				Name = entity.Name,
+				Mobile = entity.Mobile,
+				IsConfirmed = entity.IsConfirmed,
+				ConfirmCode = entity.ConfirmCode
+			};
+			return result;
+		}
+
+		public void ActiveRegister(int memberId)
+		{
+			var member = db.Members.Find(memberId);
+			member.IsConfirmed = true;
+			member.ConfirmCode = null;
+			db.SaveChanges();
+		}
 	}
 }
