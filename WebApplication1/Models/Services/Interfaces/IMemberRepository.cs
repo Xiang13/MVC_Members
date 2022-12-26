@@ -16,5 +16,7 @@ namespace WebApplication1.Models.Services.Interfaces
 		MemberDto Load(int memberId);
 
 		void ActiveRegister(int memberId);
+
+		MemberDto GetByAccount(string account);
 	}
 }

@@ -10,6 +10,7 @@ namespace WebApplication1.Models.DTOs
 {
 	public class RegisterDto
 	{
+		public const string SALT = "!@#$$DGTEGYT";
 		public string Account { get; set; }
 
 		public string Password { get; set; } // 密碼，明碼
@@ -18,8 +19,8 @@ namespace WebApplication1.Models.DTOs
 		{
 			get
 			{
-				string salt = "!@#$$DGTEGYT";
-				string result = HashUtility.ToSHA256(this.Password, salt);
+				//string salt = "!@#$$DGTEGYT";
+				string result = HashUtility.ToSHA256(this.Password, SALT);
 				return result;
 			}
 		} // 密碼，暗碼

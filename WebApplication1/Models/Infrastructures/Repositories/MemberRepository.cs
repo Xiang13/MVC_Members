@@ -60,5 +60,12 @@ namespace WebApplication1.Models.Infrastructures.Repositories
 			member.ConfirmCode = null;
 			db.SaveChanges();
 		}
+
+		public MemberDto GetByAccount(string account)
+		{
+			return db.Members
+				.SingleOrDefault(x => x.Account == account)
+				.ToDto();
+		}
 	}
 }
